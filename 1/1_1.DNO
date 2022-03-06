@@ -3,7 +3,7 @@
 ***                                                                          ***
 ***                                                                          ***
 ***                            DC Analysis of 1_1                            ***
-***                           02.03.2022 10:57:37                            ***
+***                           02.03.2022 12:53:04                            ***
 ********************************************************************************
 Limits
 ======
@@ -17,7 +17,7 @@ Temperature              Linear 27
 Number of Points         51
 Maximum Change %         1
 Run Options              Normal
-Auto Scale Ranges        Off
+Auto Scale Ranges        On
 Accumulate Plots         Off
 Ignore Expression Errors Off
 
