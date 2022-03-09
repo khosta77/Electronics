@@ -4,7 +4,7 @@ Version=12.00
 Program=Micro-Cap
 Component Version=10.00
 Shape Version=11.00
-Screen=1536,864
+Screen=1920,1080
 MCAPVersion=12.2.0.5
 Key ID=Demo
 NLCnt=34
@@ -230,7 +230,7 @@ PinCnt=1
 Pin="PinA",0,0,-3,-7
 
 [Circuit]
-Window Placement=2,3, -1,-1, -8,-31, 0,52,759,490
+Window Placement=2,3, -1,-1, -8,-31, 182,182,1233,620
 Default Object=Color=#000080
 Default Object Font=Height=-15,FStyle=0,Color=#000080,Name=Arial
 Default Object Apply Border To Text=No
@@ -242,7 +242,7 @@ PowerFormat=3
 PathDelayFormat=3
 WarningFormat=3
 GridTextFormulaFormat=3
-Window Placement in AC Analysis=2,3, -1,-1, -8,-31, 52,52,1103,490
+Window Placement in AC Analysis=2,3, -1,-1, -8,-31, 0,0,1345,438
 SpiceType=AMBIGUOUS
 Title_Block_Border=None
 Title_Block=False
@@ -557,7 +557,7 @@ CurrentSection 3=0
 Splitter.xs=0
 Splitter.ys=0
 TextQuad=4099
-Scale=1
+Scale=0.66666666666666663
 GridUser=10
 ShapeGroups="Euro","Main","Polarity","Main1","Main11","Electrolytic","GroundArrow","DeMorgan"
 CalcRMS=False
@@ -723,7 +723,7 @@ ALIGNBOTTOM=Yes
 
 [Section]
 Index=0
-Name="2"
+Name="circuit1"
 Type=Main
 Enable=True
 CurrentPage 0=0
@@ -745,9 +745,9 @@ PrinterScale=1
 Scale 0=1
 Scale 1=1
 Scale 2=1
-SB 3=141,0
-Scale 3=1
-Px=606,385
+SB 3=168,79
+Scale 3=0.66666666666666663
+Px=805,234
 WinBackGround Color=#FFFFFF
 Select Color=#FF0000
 Anchor Color=#000000
@@ -879,7 +879,7 @@ SimulationLog=True
 
 [AC]
 WinID=2
-Window Placement=2,3, -1,-1, -8,-31, 52,52,1103,490
+Window Placement=2,3, -1,-1, -8,-31, 0,0,1345,438
 Font=Height=-19,FStyle=0,Color=#0000FF,Name=Arial
 WinBackGround Color=#FFFFFF
 Select Color=#FF0000
@@ -1108,7 +1108,7 @@ Seed=0
 
 [Limits]
 Analysis=AC
-FRange=2E6,1e5
+FRange=6E5,4.5e5
 NPts=9000
 Temp=27
 MaxChng=5
@@ -1130,9 +1130,11 @@ Plt=1
 AliasID=1
 XExp=F
 YExp=V(OUT)
-XRng=Autoalways
-YRng=Autoalways
+XRng=600000,450000
+YRng=1.25
 Options=LINEARY
+Range Grid X=30000
+Range Grid Y=0.25
 Enable=Enable
 Line Color=#0000FF
 Text Color=#0000FF
@@ -1176,17 +1178,6 @@ Analysis=ImDistortion
 
 [Pane]
 Analysis=Stability
-
-[Stepping]
-Analysis=AC
-Index=1
-Status=On
-Parameter Type=Component
-Name=VVAR
-Param=dc.value
-From=1
-To=30
-Value=2
 
 [Watch]
 Analysis=AC
