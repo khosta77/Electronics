@@ -1,0 +1,39 @@
+********************************************************************************
+***                       Micro-Cap 12.2.0.5 (32 bit)                        ***
+***                                                                          ***
+***                                                                          ***
+***                     DC Analysis of Vkhodnaya_khar-ka                     ***
+***                           10.04.2022 17:57:15                            ***
+********************************************************************************
+Limits
+======
+Variable 1 Method        Auto
+Variable 1 Name          VB
+Variable 1 Range         2,0,0.1
+Variable 2 Method        Linear
+Variable 2 Name          VC
+Variable 2 Range         5,0,5
+Temperature              Linear 27
+Number of Points         10
+Maximum Change %         5
+Run Options              Normal
+Auto Scale Ranges        On
+Accumulate Plots         Off
+Ignore Expression Errors Off
+
+
+*****************************************************
+***                Temperature=27                 ***
+***                     VC=0                      ***
+*****************************************************
+
+Temperature=27 VC=0
+
+
+*****************************************************
+***                Temperature=27                 ***
+***                     VC=5                      ***
+*****************************************************
+
+Temperature=27 VC=5
+
