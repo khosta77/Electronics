@@ -7,8 +7,8 @@ Shape Version=11.00
 Screen=1920,1080
 MCAPVersion=12.2.0.5
 Key ID=Demo
-NLCnt=16
-TXCnt=0
+NLCnt=36
+TXCnt=2
 
 [shapedef]
 Name=Battery
@@ -17,16 +17,6 @@ Line=22,-3,22,3
 Line=26,-7,26,7
 Line=26,0,48,0
 Current=32,8,16,8
-
-[shapedef]
-Name=Battery_Euro
-Line=26,-7,26,7
-Line=26,0,48,0
-Line=0,0,22,0
-Root="Minus.root",17,4,0
-Root="Plus.root",31,4,0
-Rectangle=22,-3,23,3
-Current=32,-8,16,-8
 
 [shapedef]
 Name=Bjt.root
@@ -45,22 +35,12 @@ PolyLine=24,12
 PolyLine=14,2
 
 [shapedef]
-Name=Bjt_Euro.root
-Ellipse=4,-16,36,16
-FColor=None
-Line=0,0,13,0
-Rectangle=13,-12,15,12
-Current=32,-24,32,-16
-Current=32,24,32,16
-Current=0,-12,8,-12
-PolyOpen=3
-PolyLine=24,24
-PolyLine=24,12
-PolyLine=14,2
-PolyOpen=3
-PolyLine=24,-24
-PolyLine=24,-12
-PolyLine=14,-2
+Name=Capacitor
+Line=0,0,22,0
+Line=22,-8,22,8
+Line=26,-8,26,8
+Line=26,0,48,0
+Current=32,12,16,12
 
 [shapedef]
 Name=Ground
@@ -70,30 +50,12 @@ Line=18,-4,18,4
 Line=24,0,24,0
 
 [shapedef]
-Name=Ground_Euro
-Line=0,0,12,0
-Line=12,-8,12,8
-
-[shapedef]
-Name=Minus.root
-Line=-2,0,2,0
-
-[shapedef]
 Name=NPN
 Root="Bjt.root",0,0,0
 PolyClosed=3
 PolyLine=20,12
 PolyLine=24,12
 PolyLine=24,8
-
-[shapedef]
-Name=NPN_Euro
-PolyClosed=4
-PolyLine=24,8
-PolyLine=24,8
-PolyLine=24,12
-PolyLine=20,12
-Root="Bjt_Euro.root",0,0,0
 
 [shapedef]
 Name=Plus.root
@@ -118,19 +80,30 @@ PolyLine=48,0
 Current=32,8,16,8
 
 [shapedef]
-Name=Resistor_Euro
-Rectangle=12,-4,36,4
-FColor=None
+Name=Sine_Source
+Root="Vsource.root",0,0,0
+Line=24,-6,26,-4
+Line=26,-4,26,-2
+Line=26,-2,22,2
+Line=22,2,22,4
+Line=22,4,24,6
+
+[shapedef]
+Name=Vsource.root
 Line=0,0,12,0
-Line=48,0,36,0
-Current=32,8,16,8
+Line=36,0,48,0
+Ellipse=12,-12,36,12
+FColor=None
+Line=7,5,7,9
+Root="Plus.root",41,7,0
+Current=32,16,16,16
 
 [compdef]
 Name=Resistor
 Definition=Resistor
 Shape=Resistor
-Mask=6145
-Used=196
+Mask=6913
+Used=166
 memo=Resistor
 Label Offset=18,6,8,11
 PinCnt=2
@@ -151,11 +124,34 @@ Pin="Base",0,0,-18,-3
 Pin="Emitter",3,3,5,1
 
 [compdef]
+Name=Ground
+Definition=Ground
+Shape=Ground
+Mask=257
+Used=274
+memo=Ground
+Label Offset=0,0,0,0
+PinCnt=1
+Pin="PinA",0,0,-3,-7
+
+[compdef]
+Name=Capacitor
+Definition=Capacitor
+Shape=Capacitor
+Mask=7425
+Used=24
+memo=Capacitor
+Label Offset=16,12,12,12
+PinCnt=2
+Pin="Plus",6,0,-3,-5
+Pin="Minus",0,0,-14,-5
+
+[compdef]
 Name=Battery
 Definition=Battery
 Shape=Battery
-Mask=6913
-Used=59
+Mask=7425
+Used=52
 memo=Battery
 Label Offset=19,7,10,13
 PinCnt=2
@@ -163,18 +159,18 @@ Pin="Plus",6,0,-4,-5
 Pin="Minus",0,0,-10,-5
 
 [compdef]
-Name=Ground
-Definition=Ground
-Shape=Ground
-Mask=257
-Used=290
-memo=Ground
-Label Offset=0,0,0,0
-PinCnt=1
-Pin="PinA",0,0,-3,-7
+Name=Sine Source
+Definition=Sine source
+Shape=Sine_Source
+Mask=4864
+memo=Sine Source
+Label Offset=18,12,15,12
+PinCnt=2
+Pin="Plus",6,0,-6,-6
+Pin="Minus",0,0,-19,-6
 
 [Circuit]
-Window Placement=2,3, -1,-1, -8,-31, 0,0,1353,529
+Window Placement=2,3, -1,-1, -8,-31, 64,234,1715,810
 Default Object=Color=#000080
 Default Object Font=Height=-15,FStyle=0,Color=#000080,Name=Arial
 Default Object Apply Border To Text=No
@@ -186,55 +182,36 @@ PowerFormat=3
 PathDelayFormat=3
 WarningFormat=3
 GridTextFormulaFormat=3
-Window Placement in Transient Analysis=2,3, -1,-1, -8,-31, 26,26,1703,566
-Window Placement in DC Analysis=2,3, -1,-1, -8,-31, 0,0,1353,529
+Window Placement in Transient Analysis=2,3, -1,-1, -8,-31, 104,104,1755,680
+Window Placement in DC Analysis=2,3, -1,-1, -8,-31, 78,78,1729,654
 SpiceType=AMBIGUOUS
 Title_Block_Border=None
 Title_Block=False
-Show Nodes=True
+Show Nodes=False
 Show Voltages=True
-Show Current=True
-Show Power=True
-Show Condition=True
+Show Current=False
+Show Power=False
+Show Condition=False
 Show Pin Connections=False
 Show Connection Warnings=False
 Show Cross=False
 Show Attribute Text=True
-Show Grid Text=False
+Show Grid Text=True
 
 [Comp]
 Name=Resistor
-Px=440,304
-Rot=3
+Px=648,336
+Rot=1
+COff=8,656,347,-61,6
 
 [Attr]
-ON=13,-35,PART
+ON=8,11,PART
 V=Rc
 Style=8192
 
 [Attr]
-ON=13,-21,RESISTANCE
-V=1000
-Style=8192
-
-[Attr]
-ON=0,0,PACKAGE
-V
-
-[Comp]
-Name=Resistor
-Px=360,304
-Rot=3
-COff=8,372,269,0,-18
-
-[Attr]
-ON=12,-35,PART
-V=Rb
-Style=8192
-
-[Attr]
-ON=15,-16,RESISTANCE
-V=1
+ON=8,25,RESISTANCE
+V=1K
 Style=8192
 
 [Attr]
@@ -243,34 +220,204 @@ V
 
 [Comp]
 Name=NPN
-Px=416,344
+Px=624,448
+COff=8,624,448,-36,-27
+COff=8,648,424,14,-9
+COff=8,648,472,5,5
 
 [Attr]
-ON=37,-17,PART
+ON=42,-17,PART
 V=VT1
 Style=8192
 
 [Attr]
-ON=37,-3,MODEL
+ON=41,0,MODEL
 V=2T316
 Style=8192
 
 [Attr]
 ON=0,0,PACKAGE
-V=EMT3
+V
+
+[Comp]
+Name=Ground
+Px=648,528
+Rot=1
+
+[Wire]
+Pxs=648,472,648,528
+
+[Comp]
+Name=Resistor
+Px=560,336
+Rot=1
+COff=8,568,347,-68,-2
+
+[Attr]
+ON=8,11,PART
+V=Rb
+Style=8192
+
+[Attr]
+ON=8,25,RESISTANCE
+V=100K
+Style=8192
+
+[Attr]
+ON=0,0,PACKAGE
+V
+
+[Wire]
+Pxs=560,448,624,448
+
+[Wire]
+Pxs=560,296,560,336
+
+[Wire]
+Pxs=560,296,648,296
+
+[Wire]
+Pxs=648,296,648,336
+
+[Wire]
+Pxs=560,384,560,448
+
+[Wire]
+Pxs=648,384,648,408
+
+[Comp]
+Name=Capacitor
+Px=464,448
+Rot=4
+
+[Attr]
+ON=17,-26,PART
+V=C1
+Style=8192
+
+[Attr]
+ON=18,11,CAPACITANCE
+V=1u
+Style=8192
+
+[Attr]
+ON=0,0,PACKAGE
+V
+
+[Wire]
+Pxs=416,448,464,448
+
+[Wire]
+Pxs=416,448,416,464
+
+[Wire]
+Pxs=416,512,416,528
+
+[Wire]
+Pxs=416,528,648,528
+
+[Wire]
+Pxs=512,448,560,448
+
+[Comp]
+Name=Capacitor
+Px=720,408
+Rot=4
+
+[Attr]
+ON=16,-26,PART
+V=C2
+Style=8192
+
+[Attr]
+ON=17,9,CAPACITANCE
+V=1u
+Style=8192
+
+[Attr]
+ON=0,0,PACKAGE
+V
+
+[Wire]
+Pxs=648,408,720,408
+
+[Wire]
+Pxs=648,408,648,424
+
+[Comp]
+Name=Resistor
+Px=800,440
+Rot=1
+
+[Attr]
+ON=-32,11,PART
+V=R1
+Style=8192
+
+[Attr]
+ON=-32,25,RESISTANCE
+V=10K
+Style=8192
+
+[Attr]
+ON=0,0,PACKAGE
+V
+
+[Wire]
+Pxs=768,408,800,408
+
+[Wire]
+Pxs=800,408,800,440
+
+[Wire]
+Pxs=800,488,800,528
+
+[Wire]
+Pxs=648,528,800,528
+
+[Comp]
+Name=Capacitor
+Px=872,488
+Rot=5
+
+[Attr]
+ON=-39,-26,PART
+V=C3
+Style=8192
+
+[Attr]
+ON=-39,-40,CAPACITANCE
+V=100P
+Style=8192
+
+[Attr]
+ON=0,0,PACKAGE
+V
+
+[Wire]
+Pxs=872,408,872,440
+
+[Wire]
+Pxs=800,408,872,408
+
+[Wire]
+Pxs=872,488,872,528
+
+[Wire]
+Pxs=800,528,872,528
 
 [Comp]
 Name=Battery
-Px=544,368
-Rot=3
+Px=952,448
+Rot=5
 
 [Attr]
-ON=-26,-27,PART
+ON=-27,-27,PART
 V=V1
 Style=8192
 
 [Attr]
-ON=-26,-41,VALUE
+ON=-27,-41,VALUE
 V=10
 Style=8192
 
@@ -279,47 +426,50 @@ ON=0,0,PACKAGE
 V
 
 [Wire]
-Pxs=544,240,544,320
+Pxs=952,296,952,400
 
 [Wire]
-Pxs=360,240,440,240
+Pxs=648,296,952,296
 
 [Wire]
-Pxs=360,240,360,256
+Pxs=952,448,952,528
 
 [Wire]
-Pxs=440,240,440,256
-
-[Wire]
-Pxs=440,240,544,240
-
-[Wire]
-Pxs=440,304,440,320
-
-[Wire]
-Pxs=360,344,416,344
-
-[Wire]
-Pxs=360,304,360,344
-
-[Wire]
-Pxs=440,368,440,400
-
-[Wire]
-Pxs=440,400,544,400
-
-[Wire]
-Pxs=544,368,544,400
+Pxs=872,528,952,528
 
 [Comp]
-Name=Ground
-Px=440,400
-Rot=1
+Name=Sine Source
+Px=416,512
+Rot=3
 
-[Node Offsets]
-Section=0
-;Node,Page,GridX,GridY,OffsetX,OffsetY
-Offset=3,0,360,304,31,27
+[Attr]
+ON=-31,-32,PART
+V=V3
+Style=8192
+
+[Attr]
+ON=-72,-40,MODEL
+V=63
+
+[Attr]
+ON=0,0,PACKAGE
+V
+
+[Grid Text]
+Text="IN"
+Px=416,448
+GridSnap=True
+JustifyH=Left
+JustifyV=Bottom
+CBorder=None
+
+[Grid Text]
+Text="OUT"
+Px=872,408
+GridSnap=True
+JustifyH=Left
+JustifyV=Bottom
+CBorder=None
 
 [Schematic]
 CurrentSection 0=0
@@ -331,7 +481,7 @@ Splitter.ys=0
 TextQuad=4099
 Scale=0.5
 GridUser=10
-ShapeGroups="Euro","Main","Polarity","Main1","Main11","Electrolytic","GroundArrow","DeMorgan"
+ShapeGroups="Main","Euro","Polarity","Main1","Main11","Electrolytic","GroundArrow","DeMorgan"
 CalcRMS=False
 CalcAVG=False
 CalcPeak=False
@@ -495,7 +645,7 @@ ALIGNBOTTOM=Yes
 
 [Section]
 Index=0
-Name="circuit1"
+Name="CIR_2"
 Type=Main
 Enable=True
 CurrentPage 0=0
@@ -517,9 +667,9 @@ PrinterScale=1
 Scale 0=1
 Scale 1=1
 Scale 2=1
-SB 3=0,82
+SB 3=316,216
 Scale 3=0.5
-Px=355,278
+Px=421,490
 WinBackGround Color=#FFFFFF
 Select Color=#FF0000
 Anchor Color=#000000
@@ -583,7 +733,7 @@ Type=Text
 Print=False
 Enable=True
 Name=Models
-SB 0=19,1
+SB 0=29,39
 Font=Height=-15,FStyle=0,Color=#000000,Name=Courier New
 Comment Color=#008000
 WinBackGround Color=#FFFFFF
@@ -614,14 +764,47 @@ Page=1
 [Text Area]
 Section=0
 Page=2
-Text=
+Text=* Schematic File
+Text=*
+Text=* Syntax:
+Text=* .MODEL <model name> [AKO:<reference model name>] <ModelType>
+Text=* +([<parameter name>=<value>][LOT[/#][/GAUSS|/UNIFORM|/WCASE]=[<tol>[%]] |[-<low>%,<high>%]][DEV[/#][/GAUSS|/UNIFORM|/WCASE]=[<tol>[%]]...)
+Text=* ModelType must be one of OPA,D,NPN,NMOS,NJF,PUL,SIN,TRN,CORE,GASFET,VSWITCH,ISWITCH,CAP,IND,RES,PNP,PMOS,PJF,DOUTPUT,DINPUT,UADC,UDAC,UGATE,UTGATE,UEFF,UGFF,UDLY,UPLD,UROM,URAM,UBGT,UIO,LPNP,NIGBT,I,V
+Text=*
+Text=*Examples:
+Text=* .MODEL 2N2222A NPN(BF=150 IS=1E-14)
+Text=* .model M1 NMOS(KP=2.5E-5 VTO=1.345 CGDO=14.67p CGBO=4.566p)
+Text=* .MODEL DK D(IS=1E-18)
+Text=* .model 2N2222A AKO:2N2222 NPN (BF=55 ISE=10F)
+Text=* .Model BJT1 NPN (RE=12 LOT/1/GAUSS=30% DEV/2/UNIFORM=2%)
+Text=*
+Text=* A .cir file is typically found in the data directory
+Text=*
+Text=.MODEL Q2T316G NPN (BF=86.5 BR=.6577 CJC=4.089P CJE=1.16P FC=.5 IKF=97.23M
+Text=+ IKR=.12 IS=5.506f ISC=15.5P ISE=12.8P ITF=.151 MJC=.33 MJE=.33 NE=2.496
+Text=+ RB=70.6 RC=8.35 TF=78.97P TR=27.84N VAF=96 VAR=55 VJC=.65 VJE=.69 VTF=25
+Text=+ XTB=1.5 XTF=2)
+Text=.MODEL 1000 SIN (A=10 F=1000)
+Text=*** From file C:\MC12\library\UTILITY.LBR
+Text=*** 10MHz Sinusoidal Source
+Text=.MODEL GENERAL SIN (A=62 F=1000)
+Text=*** From file C:\MC12\library\UTILITY.LBR
+Text=*** 1MHz Sinusoidal Source
+Text=.MODEL 1MHZ SIN ()
+Text=*** From file C:\MC12\library\UTILITY.LBR
+Text=*** 0 Phase Leg
+Text=.MODEL 3PHASEA SIN (A=169.7 F=60)
+Text=*** From file C:\MC12\library\UTILITY.LBR
+Text=*** 120 Phase Leg
+Text=.MODEL 3PHASEB SIN (A=169.7 F=60 PH=2.0944)
+Text=*** From file C:\MC12\library\UTILITY.LBR
+Text=*** 240 Phase Leg
+Text=.MODEL 3PHASEC SIN (A=169.7 F=60 PH=4.1888)
+Text=*** From file C:\MC12\library\UTILITY.LBR
+Text=*** 60HZ Sinusoidal Source
+Text=.MODEL 60HZ SIN (A=169.7 F=60)
+Text=.MODEL 63 SIN (A=0.01 F=1000)
 Text=.MODEL 2T316 NPN ()
-Text=*** From file D:\Micro-CAP\library\ROHM_TRANSISTOR.LIB
-Text=.MODEL 2SD2707 NPN (BF=1.3544E3 BR=9.6205 CJC=6.5540E-12 CJE=27.484E-12
-Text=+ IKF=.16193 IKR=1.1285 IS=400.00E-15 ISC=725.25E-15 ISE=400.02E-15 ITF=2.3187
-Text=+ MJC=.31941 MJE=.37516 NC=2.0260 NE=1.6742 NK=.74645 RB=16.704 RC=.12233 RE=.3
-Text=+ TF=474.50E-12 TR=79.789E-9 VAF=69.931 VAR=100 VTF=63.249 XTB=1.5000
-Text=+ XTF=38.562)
 
 [InfoPage]
 InfoPage=True
@@ -640,13 +823,13 @@ SimulationLog=True
 
 [Transient]
 WinID=1
-Window Placement=2,3, -1,-1, -8,-31, 26,26,1703,566
+Window Placement=2,3, -1,-1, -8,-31, 104,104,1755,680
 Font=Height=-19,FStyle=0,Color=#0000FF,Name=Arial
 WinBackGround Color=#FFFFFF
 Select Color=#FF0000
 Anchor Color=#000000
 Select Box Color=#000080
-Title
+Title=CIR_2.cir
 AutoTitle=Yes
 Grid Color=#808080
 Grid Weight=1
@@ -693,7 +876,7 @@ Data Point Labels Color Fore=Height=-15,FStyle=0,Color=#000000,Name=Arial
 Data Point Labels Color Back=#FFFF00
 OperPoint=True
 OperPointOnly=False
-AutoScaleRanges=True
+AutoScaleRanges=False
 FixedTimeStep=False
 DoPSS=False
 PSS_Periods="1"
@@ -705,7 +888,7 @@ FFT_IncludeDCHarmonic=False
 FFT_AutoScale_Harmonics="10"
 PrinterAutoTile=No
 PrinterBlackBorder=No
-MonMaxShow=3
+MonMaxShow=1
 MonPageWidth=66
 MonPlotWidth=21
 MonExprXWidth=142
@@ -864,9 +1047,217 @@ ALIGNBOTTOM=Yes
 Analysis=Transient
 Name="MAIN"
 
+[AC]
+WinID=2
+Font=Height=-19,FStyle=0,Color=#0000FF,Name=Arial
+WinBackGround Color=#FFFFFF
+Select Color=#FF0000
+Anchor Color=#000000
+Select Box Color=#000080
+Title
+AutoTitle=Yes
+Grid Color=#808080
+Grid Weight=1
+Grid Pattern=Dot6
+Tracker Foreground=Height=-15,FStyle=0,Color=#000000,Name=Arial
+Tracker Background=#FFFF00
+Baseline color=#0000FF
+BaseLine Weight=1
+CurveFit color=#FF0000
+CurveFit Weight=2
+CurveFit Pattern=Dash
+Static Grids=False
+PlusMark=False
+MinorLog25=Off
+LabelMinor=Off
+DataPoints=False
+Token=False
+Ruler=False
+XAxisGrids=True
+YAxisGrids=True
+MinorLogGrids=True
+BaseLine=False
+AlignZ=True
+Align Cursors=True
+TagFormatX=3
+TagFormatY=3
+FormulaFormat=2
+EndMode=SCALE
+Graph Background=#FFFFFF
+Tracker Intercept=False
+Tracker Mouse=True
+Tracker Cursor=True
+Tracker Cursor BranchInfo=False
+Horizontal Cursor=False
+Same Y Scales=Yes
+Enable X Scaling=True
+Enable Y Scaling=True
+Keep X Scales The Same=True
+Number of Grids X=5
+Number of Grids Y=5
+Cursor Select Color Primary=#C0C0C0
+Cursor Select Color Secondary=#FF0000
+Data Point Labels Color Fore=Height=-15,FStyle=0,Color=#000000,Name=Arial
+Data Point Labels Color Back=#FFFF00
+OperPoint=True
+AutoScaleRanges=True
+FFT_NPts="8192"
+FFT_IncludeDCHarmonic=False
+FFT_AutoScale_Harmonics="10"
+PrinterAutoTile=No
+PrinterBlackBorder=No
+AnimateWait=None
+AnimateWaitTime=500
+AnimatePressAfter=0
+Save_For_Future=No
+Reduce_Display=1
+Reduce_Save=1
+Reduce_ThrowDataOut=0
+Num Out Header Left
+Num Out Header Center="$MC\n$user\n$company\n$Analysis of $name\n$date $time"
+Num Out Header Right
+Num Out Delimiter=32
+Num Out Write=True
+Num Out Write Main Header=True
+Num Out Write Limits=True
+Num Out Write Branch Header=True
+Num Out Write Models=False
+Num Out Write Zero Models=True
+Num Out Write Undefined Models=True
+Num Out Write Operating Point=True
+Num Out Write Measurement Values=True
+Num Out Write Tolerance Detail=True
+Num Out Write Noise=True
+Num Out Write Values=True
+Num Out Write Waveform Header=True
+Num Out Allow Dup Y Expr=False
+Num Out Low="FMIN"
+Num Out High="FMAX"
+Num Out Font=Height=-15,FStyle=0,Color=#000000,Name=Courier New
+Num Out Format=3
+Num Out HideNonSelected=False
+Num Out UseActualDataPoints=False
+AutoSaveWave=False
+Wave Format=16E
+State Variables Format=5E
+Print Individual Pages=False
+
+[Tools]
+Pos=Top
+SELECT=Yes
+PAN=Yes
+GRAPHIC=Yes
+LINE=No
+ELLIPSE=No
+RECT=No
+DIAM=No
+ARC=No
+PIE=No
+TRIANGLE=No
+STAR=No
+LEFTBRK=No
+RIGHTBRK=No
+BOTHBRK=No
+META=Yes
+PARALLELOGRAM=No
+POLYCLOS=No
+POLYOPEN=No
+SCALE=Yes
+CURSOR=Yes
+MEASUREH=Yes
+MEASUREV=Yes
+TAG=Yes
+PTAG=Yes
+TEXT=Yes
+PROPERTY=Yes
+START=Yes
+STOP=Yes
+PAUSE=Yes
+RESUME=No
+DATAPTS=Yes
+TOKENS=Yes
+RULER=Yes
+PLUS=Yes
+XAXIS=Yes
+YAXIS=Yes
+MINORLOG=Yes
+LOG25=Yes
+BASELINE=Yes
+HORIZCUR=Yes
+GOTOX=Yes
+GOTOY=Yes
+GOTOPERF=Yes
+GOTOBRNC=Yes
+CLEAR_ACCUMULATED=Yes
+PDELETE_ALL_PLOTS=Yes
+NEXT=Yes
+NEXTIN=Yes
+PEAK=Yes
+VALLEY=Yes
+HIGH=Yes
+LOW=Yes
+INFLECTN=Yes
+GHIGH=Yes
+GLOW=Yes
+BOTTOM=Yes
+TOP=Yes
+WAVEFORMBUFFER=Yes
+AOUTPUT=Yes
+PKEY=Yes
+ENXSCALE=Yes
+ENYSCALE=Yes
+ZOOMIN=Yes
+ZOOMOUT=Yes
+AUTOSCALE=Yes
+RESTORESCALE=No
+COLOR=Yes
+FONT=Yes
+STYLE=Yes
+SELNEXT=Yes
+NORMALIZE=No
+NORMALIZE_MIN=No
+NORMALIZE_MAX=No
+ADD_TAG_LEFT=No
+ADD_TAG_RIGHT=No
+ADD_HORZ_TAG=No
+ADD_VERT_TAG=No
+ALIGN_CURSORS=No
+ALIGN_CURSORSZ=No
+CURSORTOCLIPBOARD=No
+TRACKER_CURSOR=No
+TRACKER_CURSOR_BRANCHINFO=No
+TRACKER_INTERCEPT=No
+TRACKER_MOUSE=No
+TOFRONT=Yes
+TOBACK=Yes
+SPLITCIRTEXTH=No
+SPLITCIRTEXTV=No
+SPACE_SPLITTERS_EVENLY=No
+NORMALCIR=No
+LABEL_WAVEFORM=No
+LABEL_DATA_POINTS=No
+WFB_ADD_TO_LIMITS=No
+ENVELOPE=No
+SAMEYSCALES=No
+KEEPXSCALESTHESAME=No
+CURVEFIT=No
+ADD_MARKER=No
+SHOWWATCH=No
+BP=No
+TOGGLEMODE=No
+REMOVEALLTEXT=No
+AUTOSCALEX=No
+LABELALLMINOR=No
+ALIGNLEFT=Yes
+ALIGNCENTER=Yes
+ALIGNRIGHT=Yes
+ALIGNTOP=Yes
+ALIGNMIDDLES=Yes
+ALIGNBOTTOM=Yes
+
 [DC]
 WinID=3
-Window Placement=2,3, -1,-1, -8,-31, 0,0,1353,529
+Window Placement=2,3, -1,-1, -8,-31, 78,78,1729,654
 Font=Height=-19,FStyle=0,Color=#0000FF,Name=Arial
 WinBackGround Color=#FFFFFF
 Select Color=#FF0000
@@ -920,7 +1311,7 @@ Data Point Labels Color Back=#FFFF00
 AutoScaleRanges=True
 PrinterAutoTile=No
 PrinterBlackBorder=No
-MonMaxShow=1
+MonMaxShow=3
 MonPageWidth=66
 MonPlotWidth=21
 MonExprXWidth=142
@@ -1084,6 +1475,15 @@ Number of Runs=10
 Seed=0
 
 [Monte Carlo Options]
+Analysis=AC
+Status=Off
+Zero Tolerance=False
+Eliminate Outliers=False
+Distribution=Normal
+Number of Runs=10
+Seed=0
+
+[Monte Carlo Options]
 Analysis=DC
 Status=Off
 Zero Tolerance=False
@@ -1094,13 +1494,13 @@ Seed=0
 
 [Limits]
 Analysis=Transient
-TMax=1u
+TMax=5ms
 TStart=0
-TStep=0
+TStep=1u
 NPts=51
 Temp=27
 RetraceRuns=1
-StateVar=Zero
+StateVar=Leave
 RunOption=Normal
 Temperature Type=Linear
 Accumulate Plots=False
@@ -1110,13 +1510,45 @@ IgnoreExprErrors=False
 Analysis=Transient
 Plt=1
 AliasID=1
-XExp=T
-YExp=v(1)
-XRng=1e-6
-YRng=25
-Options=LINEARX,LINEARY
-Range Grid X=2e-7
-Range Grid Y=5
+XExp=F
+YExp=HARM(V(OUT))
+XRng=5000,0
+YRng=2.5
+Options=OUTPUT,LINEARX,LINEARY
+Range Grid X=200
+Range Grid Y=0.5
+Enable=Enable
+Line Color=#0000FF
+Text Color=#0000FF
+Rainbow=False
+VFmtX=3
+VFmtY=3
+ScaleFactorX="None"
+ScaleFactorY="None"
+ScaleUnitsX="Auto"
+ScaleUnitsY="Auto"
+SFmtX=2
+SFmtY=2
+NOFmtX=7E
+NOFmtY=7E
+
+[Limits]
+Analysis=AC
+Sweep type=Log
+StateVar=Zero
+RunOption=Normal
+Temperature Type=Linear
+Accumulate Plots=False
+IgnoreExprErrors=False
+FirstValueDisplay=Mag
+SecondValueDisplay=PhaseDeg
+DisplayValuesInProbe=DC
+
+[WaveForm]
+Analysis=AC
+Plt=1
+AliasID=-1
+Options=LINEARY
 Enable=Enable
 Line Color=#0000FF
 Text Color=#0000FF
@@ -1133,16 +1565,10 @@ NOFmtX=3E
 NOFmtY=3E
 
 [WaveForm]
-Analysis=Transient
-Plt=1
-AliasID=2
-XExp=T
-YExp=v(2)
-XRng=1e-6
-YRng=25
-Options=LINEARX,LINEARY
-Range Grid X=2e-7
-Range Grid Y=5
+Analysis=AC
+Plt=2
+AliasID=-1
+Options=LINEARY
 Enable=Enable
 Line Color=#FF0000
 Text Color=#FF0000
@@ -1159,9 +1585,9 @@ NOFmtX=3E
 NOFmtY=3E
 
 [WaveForm]
-Analysis=Transient
+Analysis=AC
 AliasID=-1
-Options=LINEARX,LINEARY
+Options=LINEARY
 Enable=Enable
 Line Color=#008000
 Text Color=#008000
@@ -1179,11 +1605,8 @@ NOFmtY=3E
 
 [Limits]
 Analysis=DC
-I2Range=5,0,5
-I2=I1
-I1Range=10,0,1
-I1=VC
-NPts=20
+I1Range=10,0,.5
+NPts=51
 Temp=27
 MaxChng=5
 StateVar=Zero
@@ -1192,20 +1615,58 @@ Temperature Type=Linear
 Accumulate Plots=False
 IgnoreExprErrors=False
 Sweep1 type=Auto
-Sweep2 type=Linear
+Sweep2 type=None
 
 [WaveForm]
 Analysis=DC
 Plt=1
 AliasID=1
-XExp=V(1)
-YExp=IC(VT1)
+XExp=DCINPUT1
+YExp=v(IN)
 XRng=Auto
 YRng=Auto
 Options=LINEARX,LINEARY
 Enable=Enable
 Line Color=#0000FF
 Text Color=#0000FF
+Rainbow=False
+VFmtX=3
+VFmtY=3
+ScaleFactorX="None"
+ScaleFactorY="None"
+ScaleUnitsX="Auto"
+ScaleUnitsY="Auto"
+SFmtX=2
+SFmtY=2
+NOFmtX=3E
+NOFmtY=3E
+
+[WaveForm]
+Analysis=DC
+AliasID=-1
+Options=LINEARX,LINEARY
+Enable=Enable
+Line Color=#FF0000
+Text Color=#FF0000
+Rainbow=False
+VFmtX=3
+VFmtY=3
+ScaleFactorX="None"
+ScaleFactorY="None"
+ScaleUnitsX="Auto"
+ScaleUnitsY="Auto"
+SFmtX=2
+SFmtY=2
+NOFmtX=3E
+NOFmtY=3E
+
+[WaveForm]
+Analysis=DC
+AliasID=-1
+Options=LINEARX,LINEARY
+Enable=Enable
+Line Color=#008000
+Text Color=#008000
 Rainbow=False
 VFmtX=3
 VFmtY=3
@@ -1255,6 +1716,11 @@ Format=3
 ExprPercentWidth=80
 
 [Watch]
+Analysis=AC
+Format=3
+ExprPercentWidth=80
+
+[Watch]
 Analysis=DC
 Format=3
 ExprPercentWidth=80
@@ -1276,17 +1742,17 @@ AVAILABLE_FILE=<Library>Standard.tlib
 Analysis=DynamicDC
 Link="RB"
 Min="1"
-Max="10000"
-Default="1"
+Max="50"
+Default="9.95K"
 Format=3
 Method=Linear
-Show=True
+Show=False
 Font=Height=-15,FStyle=0,Color=#000000,Name=Arial
 StepSize="10%"
 MRUDockID=59421
-Floating=False
-LocalOffset=True
-Rect=-2,-2,44,158
+Floating=True
+LocalOffset=False
+Rect=1186,342,1228,381
 
 [OPMethods]
 Analysis=Transient
